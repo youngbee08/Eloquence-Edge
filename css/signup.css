@@ -1,0 +1,236 @@
+body{
+    background-color: var(--light);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --accent: #facc15;
+    --white: #ffffff;
+    --secondary:#e0f2fe;
+    --secondary-dark:#bae6fd;
+    --text: #374151;
+    --text-light: #6b7280;
+    --text-weight: 500;
+    --text-weight-xl: 600;
+    --p--5:.5rem;
+    --p--75:.75rem;
+    --p-1:1rem;
+    --p-2:2rem;
+    --p-4:4rem;
+    --p-6:6rem;
+}
+#formCon{
+    background-color: var(--white);
+    box-shadow: 0px 4px 20px var(--dark);
+    width: 300px;
+    height: fit-content;
+    padding: 1rem 1.5rem;
+    margin: auto;  
+    display: flex;  
+    flex-direction: column;
+    transform: translateY(3.5rem);
+    border-radius: 12px;
+}
+
+#userNameInpCon{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+#emailInpCon{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+#passwordInpCon{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+#passwordInpCon .pass{
+    display: flex;
+    align-items: center;
+    width: auto;
+    height: 43px;
+    border-radius: 8px;
+    border: 2px solid var(--text-light);
+    margin-bottom: .5rem;
+    background-color: var(--secondary);
+}
+.pass .fa-eye-slash{
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-left: 1px solid var(--text);
+    padding: var(--p--75) 1.3rem;
+}
+.pass .fa-eye{
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+    cursor: pointer;
+    border-left: 1px solid var(--text);
+    padding: var(--p--75) 1.3rem;
+}
+.pass #passwordInp{
+    border: none;
+    background-color: transparent;
+    margin: 1rem 0;
+    border-radius: 0;
+    background-color: var(--light);
+    outline: 0;
+}
+.changeInpBg{
+    background-color: var(--secondary-dark) !important;
+}
+input{
+    width: auto;
+    height: 10px;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid var(--text-light);
+    margin-bottom: .5rem;
+    outline: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: outline-color 1s ease-in-out;
+    outline: 3px solid transparent;
+}
+input:focus{
+    border: none;
+    outline-color: var(--primary-dark);
+}
+h2{
+    text-align: center;
+    font-size: 25px;
+}
+label{
+    font-weight:var(--text-weight-xl);
+}
+#googleSignUpBtn{
+    display: flex;
+    flex-direction: column;
+    gap: var(--p--5);
+}
+#createBtn{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: var(--p-1) var(--p-2);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+    font-weight: var(--text-weight-xl);
+}
+#createBtn:hover{
+    background-color:var(--primary-dark);
+}
+#continueBtn{
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: var(--p--5) var(--p--75);
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    gap: var(--p-2);
+    align-items: center;
+}
+#continueBtn:hover{
+    background-color:var(--secondary-dark) ;
+    border-color: var(--primary);
+}
+#already p{
+    font-size: var(--p-1);
+    text-align: center;
+    font-weight: 600;
+}
+#hiddenPara{
+    font-size: 15px;
+    font-weight: 600;
+    display: none;
+}
+.valid{
+    color: green;
+    padding: .1rem;
+}
+.invalid{
+    color: red;
+    padding: .1rem;
+}
+.my-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--light);
+    font-size: .8rem;
+    font-weight: 600;
+    display: none;
+}
+
+.spinner {
+width: 12px;
+height: 12px;
+border: 3px solid var(--light);
+border-top: 3px solid var(--primary);
+border-radius: 50%;
+animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+to {
+    transform: rotate(360deg);
+}
+} 
+@media screen and (max-width:425px) {
+    #formCon{
+        width: 220px;
+        height: 470px;
+    }
+    h2{
+        font-size: 15px;
+    }
+    label{
+        font-size: 15px;
+    }
+    input{
+        width: auto;
+        height: 10px;
+        font-size: 15px;
+    }
+    #firstNameInpCon{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    #secNameInpCon{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    #emailInpCon{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    #passwordInpCon{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+    p{
+        font-size: 13px;
+        font-weight: 600;
+    }
+}

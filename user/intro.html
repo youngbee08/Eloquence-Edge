@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Eloquence Edge Intro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background-color: #A9DCF1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .logo, .typing-text {
+      position: absolute;
+      text-align: center;
+    }
+
+    .logo img {
+      width: 150px;
+      height: auto;
+      opacity: 0;
+      animation: fadeIn 2s forwards, fadeOut 2s 2.5s forwards;
+    }
+
+    .typing-text {
+      font-size: 40px;
+      font-weight: 800;
+      color: #000080;
+      letter-spacing: 3px;
+      display: none;
+      background: linear-gradient(90deg, #000080, #1e90ff, #000080);
+      background-size: 200%;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+
+    @keyframes shine {
+      0% { background-position: 0%; }
+      100% { background-position: 200%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Logo -->
+<div class="logo" id="logo">
+  <img src="../assets/Eloquence_Edge_Logo(no_label).png" alt="EE Logo">
+</div>
+
+<!-- Typing Text -->
+<div class="typing-text" id="typingText"></div>
+
+<script>
+  const typingText = document.getElementById('typingText');
+  const fullText = "ELOQUENCE EDGE";
+  let i = 0;
+
+  setTimeout(() => {
+    document.getElementById('logo').style.display = 'none';
+    typingText.style.display = 'block';
+    typeWriter();
+  }, 4500);
+
+  function typeWriter() {
+    if (i < fullText.length) {
+      typingText.textContent += fullText.charAt(i);
+      i++;
+      setTimeout(typeWriter, 150);
+    } else {
+      typingText.style.animation = 'shine 2s infinite linear';
+      // After shine, move to continue page
+      setTimeout(() => {
+        window.location.href = "../index.html"; // Put your continue page name here
+      }, 3000); // 3 seconds after typing finishes
+    }
+  }
+</script>
+
+</body>
+</html>

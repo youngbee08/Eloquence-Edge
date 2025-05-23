@@ -1,0 +1,69 @@
+body {
+    background-color: var(--bg-col-dark);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--black);
+    user-select: none;
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --accent: #facc15;
+    --white: #ffffff;
+    --black:black;
+    --secondary:#e0f2fe;
+    --secondary-dark:#bae6fd;
+    --text: #374151;
+    --text-light: #6b7280;
+    --text-weight: 500;
+    --text-weight-xl: 700;
+    --p--5:.5rem;
+    --p--75:.75rem;
+    --p-1:1rem;
+    --p-2:2rem;
+    --p-4:4rem;
+    --p-6:6rem;
+    --bg-col:#A9DCF1;
+    --bg-col-dark:#26AEDF;
+    --bg-col-deep:#001F4F;
+    --hov-text-bg-col:#04031A;
+}
+#root{
+    padding: var(--p--75);
+    position: relative;
+}
+#root #main{
+    display: flex;
+    flex-direction: column;
+    gap: var(--p--75);
+}
+#main .topIcons{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 2000;
+}
+#main .topIcons i{
+    font-size: 25px;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    padding: var(--p--5);
+    color: var(--secondary);
+    text-align: center;
+    cursor: pointer;
+    :hover{
+        display: none;
+    }
+}
+#main .topIcons i:hover{
+    background-color: var(--bg-col-deep)
+}

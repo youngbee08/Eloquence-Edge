@@ -1,0 +1,344 @@
+body {
+    background-color: var(--bg-col-dark);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--black);
+    user-select: none;
+}
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --accent: #facc15;
+    --white: #ffffff;
+    --black:black;
+    --secondary:#e0f2fe;
+    --secondary-dark:#bae6fd;
+    --text: #374151;
+    --text-light: #6b7280;
+    --text-weight: 500;
+    --text-weight-xl: 700;
+    --p--5:.5rem;
+    --p--75:.75rem;
+    --p-1:1rem;
+    --p-2:2rem;
+    --p-4:4rem;
+    --p-6:6rem;
+    --bg-col:#A9DCF1;
+    --bg-col-dark:#26AEDF;
+    --bg-col-deep:#001F4F;
+    --hov-text-bg-col:#04031A;
+}
+/* General Styling */
+/* fas */
+/* .fas:hover{
+    border-radius: 50%;
+    background-color: var(--secondary);
+} */
+/* Scrollbar base */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 8px;
+    background-color: transparent;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+    background-color: var(--bg-col);
+    border-radius: 20px;
+    width: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-color: var(--bg-col-dark);
+}
+
+/* Scrollbar track (the track where the thumb slides) */
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+}
+
+/* Scrollbar buttons (the arrows) */
+::-webkit-scrollbar-button {
+    background-color:transparent;
+    height: 20px;
+    width: 8px;
+}
+
+/* Up arrow */
+::-webkit-scrollbar-button:single-button:decrement {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10"><polygon points="4,0 8,5 0,5" fill="gray"/></svg>') no-repeat center;
+    background-size: 15px;
+}
+
+/* Down arrow */
+::-webkit-scrollbar-button:single-button:increment {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="8" height="10" viewBox="0 0 8 10"><polygon points="0,5 8,5 4,10" fill="gray"/></svg>') no-repeat center;
+    background-size: 15px;
+}
+  
+/* General Styling Ends */
+/* Container */
+.root{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    background-color: transparent;
+}
+.root .aside{
+    background-color: var(--bg-col-deep);
+    width: 70%;
+    transform: translateX(-100%);
+    position: absolute;
+    transition: 1s ease-in-out;
+    color: var(--light);
+    height: 100%;
+    z-index: 4000;
+}
+.root .aside.togglebar{
+    position: relative;
+    transform: translateX(0);
+}
+.root aside .icons{
+    display: flex;
+    justify-content: space-between;
+    padding: var(--p-1) var( --p--5);
+    width: 90%;
+    height: fit-content;
+}
+.root aside .icons img{
+    width: 18px;
+    color: var(--light);
+    filter: invert(100%);
+    cursor: pointer;
+    padding: .5rem;
+}
+.icons{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+.icons .img2{
+    width:30px;
+    color: var(--light);
+    filter: invert(100%);
+    cursor: pointer;
+    padding: .5rem;
+    opacity: 1;
+    position:unset;
+}
+.root aside .icons img:hover{
+    background-color: #6d2507;
+    border-radius: 10px;
+    font-weight: 900;
+}
+.icons img:hover{
+    background-color: #6d2507;
+    border-radius: 10px;
+}
+.root aside .history{
+    overflow-y: scroll;
+    height: 72%;
+    padding: .5rem;
+}
+.root aside .history .allCourse h1,.completedCourse h1{
+    font-size: 14px;
+    font-weight: var(--text-weight-xl);
+}
+.root aside .history .allCourse .courses h5,.completedCourse .courses h5{
+    font-size: 12px;
+    font-weight: var(--text-weight);
+    cursor: pointer;
+    padding: .4rem;
+}
+.root aside .history .allCourse .courses h5:hover{
+    background-color: grey;
+    border-radius: 5px;
+}
+.root aside .history .allCourse .courses h5.h5{
+    background-color: rgb(63, 62, 62);
+    border-radius: 5px;
+}
+.root aside .history .allCourse .courses h5.h5:hover{
+    background-color: grey;
+    border-radius: 5px;
+}
+.root main{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-2);
+    transition: 1s ease-in-out;
+    overflow-y: scroll;
+    position: absolute;
+}
+.root main::-webkit-scrollbar{
+    display: none !important;
+}
+.root main .greet{
+    position: sticky;
+    top: 0;
+    background-color: var(--bg-col-dark);
+    color: white;
+    padding: 0 var(--p-1);
+    box-shadow: 0px 1px 10px var(--hov-text-bg-col);
+    z-index: 2000;
+}
+.root main .greet h1{
+    font-size: 20px;
+}
+.root main .progress{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 var(--p-2);
+    width: 70%;
+}
+.root main .goal,.topic-con{
+    background-color: var(--secondary-dark);
+    width:70%;
+    height: fit-content;
+    border-radius: 8px;
+    padding: var(--p--75);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0 var(--p-2);
+}
+.root main .goal .first{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--p--5);
+}
+.root main .goal .first .today{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+}
+.root main .goal .first .today .checked{
+    background-color: green;
+    color: white;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    font-weight: var(--text-weight-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.root main .goal .first h2{
+    font-size: 16px;
+}
+.root main .goal .second{
+    display: flex;
+    flex-direction: column;
+    line-height: 2px;
+    font-size: 14px;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    opacity: 1;
+    position: unset;
+}
+.root main .goal .second .start{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.root main .goal .second .start button{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    padding: var(--p--5);
+    background-color: var(--bg-col-dark);
+    border: none;
+    border-radius: 5px;
+    font-weight: var(--text-weight-xl);
+    cursor: pointer;
+}
+.root main .goal .second.hideSecond{
+    transform: translateY(-100%);
+    position: absolute;
+    opacity: 1;
+    max-height: 0;
+    overflow: hidden;
+}
+.controlController{
+    rotate: 180deg;
+}
+.root main .nextTopics{
+    display: flex;
+    flex-direction: column;
+    gap: var(--p--75);
+    padding-bottom: 20px;
+}
+.root main .hrcon{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--p--75);
+    width: 100%;
+    color: var(--hov-text-bg-col);
+    font-weight: var(--text-weight-xl);
+}
+.root main .hrcon hr{
+    width: 35%;
+    border: 1px solid var(--hov-text-bg-col);
+}
+.root main .hrcon h5{
+    font-size: 13px;
+}
+progress {
+    width: 100%;
+    height: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #eee; /* fallback for older browsers */
+  }
+  
+  /* Chrome, Safari, Edge */
+  progress::-webkit-progress-bar {
+    background-color:var(--bg-col);
+    border-radius: 10px;
+  }
+  progress::-webkit-progress-value {
+    background-color: var(--bg-col-deep); /* your desired color */
+    border-radius: 10px;
+  }
+  
+  /* Firefox */
+  progress::-moz-progress-bar {
+    background-color: #28a745;
+  }
+  .goal {
+  position: relative;
+}
+
+.blurred {
+  filter: blur(1.5px); /* Applies blur effect */
+  opacity: 0.5; /* Makes the blurred topic a bit transparent */
+  pointer-events: none; /* Disables interaction with the blurred topic */
+}
+
+.padlock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Centers the padlock */
+  font-size: 3em; /* Larger padlock icon */
+  color:black; /* White color for visibility */
+  opacity: 0.8;
+  z-index: 10; /* Ensures the padlock is above other content */
+  text-align: center; /* Centers the icon within the container */
+}
+
+.fas.fa-lock {
+  display: block; /* Makes sure the icon is block-level for centering */
+}

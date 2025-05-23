@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eloquence Edge || Create Account</title>
+    <!-- Font-awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Font-awesome cdn Ends -->
+    <!-- CSS cdn Link -->
+    <link rel="stylesheet" href="../css/signup.css">
+    <!-- CSS cdn Link ends -->
+</head>
+<body>
+    <!-- Form Begins -->
+    <form action="" id="formCon">
+        <h2>Create An Account</h2>
+        <div id="userNameInpCon">
+            <label for="userNameInp">User Name</label>
+            <input type="text" id="userNameInp" placeholder="User Name" required>
+        </div>
+        <div id="emailInpCon">
+            <label for="emailInp">Email</label>
+            <input type="email" id="emailInp" placeholder="Email" required>
+        </div>
+        <div id="passwordInpCon">
+            <label for="passwordInp">Password</label>
+            <div class="pass" id="pass"> 
+                <input type="password" id="passwordInp" placeholder="Password" required minlength="6">
+                <div id="eye-con">
+                    <i class="fas fa-eye-slash" id="fa-eye-slash"></i>
+                </div>
+            </div>
+            <p id="hiddenPara"></p>
+        </div>
+        <div id="formSubmitBtn">
+            <button type="submit" id="createBtn">
+                <div class="my-spinner" id="loadingSpinner">
+                    <div class="spinner"></div>
+                </div>
+                <span id="normalText">Continue</span>
+            </button>
+        </div>
+        <br>
+        <div id="googleSignUpBtn">
+            <span style="text-align: center;">OR</span>
+            <button type="button" id="continueBtn">
+                <img width="30px" height="30px" src="../assets/g_logo-removebg-preview.png" alt="">
+                <span style="font-weight: 600;">Continue With Google</span>
+            </button>
+        </div>
+        <div id="already">
+            <p>Already Have An Account? <span id="spanSign"><a href="">Sign In</a></span></p>
+        </div>
+    </form>
+    <!-- Form Ends -->
+    <script>
+        window.env = {
+            API_KEY: 'AIzaSyC0qjjQ162Nt4kpCOewsXu_CdMRAaHHQhs'
+        };
+    </script>
+    <script type="module" src="../js/signUp.js"></script>
+</body>
+</html>

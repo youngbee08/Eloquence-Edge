@@ -1,0 +1,144 @@
+body{
+    background-color: var(--light);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+}
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --accent: #facc15;
+    --white: #ffffff;
+    --secondary:#e0f2fe;
+    --secondary-dark:#bae6fd;
+    --text: #374151;
+    --text-light: #6b7280;
+    --text-weight: 500;
+    --text-weight-xl: 600;
+    --p--5:.5rem;
+    --p--75:.75rem;
+    --p-1:1rem;
+    --p-2:2rem;
+    --p-4:4rem;
+    --p-6:6rem;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container .content{
+    padding:var(--p-2);
+}
+.content h1{
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: var(--text-weight-xl);
+}
+.content .typewriter-text{
+    font-size: 24px;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: var(--p--5) 0;
+}
+.content .typewriter-text #typewriter{
+    color: var(--text-light);
+    display: inline;
+}
+.content .action-buttons{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 20px;
+}
+.content .action-buttons .primary-btn{
+    background-color: var(--primary);
+    color: var(--white);
+    padding: var(--p-1) var(--p-2);
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.content .action-buttons .primary-btn:hover{
+    background-color:var(--primary-dark);
+}
+.content .action-buttons .secondary-btn {
+    background-color: var(--secondary);
+    color: var(--primary);
+    padding: var(--p-1) var(--p--75);
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.content .action-buttons .secondary-btn:hover {
+    background-color:var(--secondary-dark) ;
+    border-color: var(--primary);
+}
+button .fas{
+    margin-right: 5px;
+    font-size: 1rem;
+}
+@media screen and (max-width: 500px){
+    section{
+        display: block;
+        padding: .9rem 0;
+        width: fit-content;
+        justify-content: start;
+    }
+    section .container{
+        display: block;
+        width: 100%;
+    }
+    .container .content h1{
+        font-size: 1.5rem;
+        width: 100%;
+    }
+    .content .typewriter-text{
+        font-size: 1.3rem;
+        width: 100%;
+        padding: var(--p--5) 0;
+    }
+    .content .typewriter-text #typewriter{
+        white-space: normal;
+        word-break: break-word;
+        display: inline;
+    }
+    section .content .action-buttons{
+        flex-direction: column;
+        width: 80%;
+        position: fixed;
+        bottom: 0;
+        padding-bottom: var(--p--75);
+    }
+    .action-buttons .primary-btn,.secondary-btn{
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+@media screen and (min-width: 500px) and (max-width: 800px){
+    /* body{
+        background-color: rgb(34, 26, 26);
+    } */
+    section{
+        display: block;
+        transform: translateY(2rem);
+        padding: .9em;
+        width: 90%;
+    }
+    .content h1{
+        font-size: 2rem;
+    }
+}
