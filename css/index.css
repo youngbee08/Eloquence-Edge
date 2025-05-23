@@ -101,20 +101,20 @@ button .fas{
     section .container{
         display: block;
         width: 100%;
+        height: 100%;
+        .content{
+            h2{
+                font-size: var(--p-2);
+            }
+            h2,p{
+                transform: translateY(-2.5rem);
+                text-align: center;
+            }
+        }
     }
-    .container .content h1{
-        font-size: 1.5rem;
+    section .container .img{
+        height: 75%;
         width: 100%;
-    }
-    .content .typewriter-text{
-        font-size: 1.3rem;
-        width: 100%;
-        padding: var(--p--5) 0;
-    }
-    .content .typewriter-text #typewriter{
-        white-space: normal;
-        word-break: break-word;
-        display: inline;
     }
     section .content .action-buttons{
         flex-direction: column;
