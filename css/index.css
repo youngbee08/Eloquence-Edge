@@ -107,7 +107,7 @@ button .fas{
                 font-size: 40px;
             }
             h2,p{
-                transform: translateY(-6rem);
+                transform: translateY(-9rem);
                 text-align: center;
             }
             p{
@@ -118,6 +118,7 @@ button .fas{
     section .container .img{
         height: 75%;
         width: 100%;
+        transform: translateY(-3.5rem);
     }
     section .content .action-buttons{
         flex-direction: column;
