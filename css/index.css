@@ -64,7 +64,7 @@ section{
 .content .action-buttons .primary-btn{
     background-color: var(--primary);
     color: var(--white);
-    padding: var(--p-1) var(--p-2);
+    padding: 1.5rem var(--p-2);
     border-radius: 8px;
     border: none;
     cursor: pointer;
@@ -76,7 +76,7 @@ section{
 .content .action-buttons .secondary-btn {
     background-color: var(--secondary);
     color: var(--primary);
-    padding: var(--p-1) var(--p--75);
+    padding: 1.5rem var(--p--75);
     border-radius: 8px;
     border: 2px solid var(--primary);
     font-size: 1rem;
@@ -104,11 +104,14 @@ button .fas{
         height: 100%;
         .content{
             h2{
-                font-size: var(--p-2);
+                font-size: 40px;
             }
             h2,p{
-                transform: translateY(-2.5rem);
+                transform: translateY(-6rem);
                 text-align: center;
+            }
+            p{
+                font-size: 18px;
             }
         }
     }
@@ -122,6 +125,7 @@ button .fas{
         position: fixed;
         bottom: 0;
         padding-bottom: var(--p--75);
+        transform: translateX(1rem);
     }
     .action-buttons .primary-btn,.secondary-btn{
         width: 100%;
