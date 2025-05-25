@@ -19,7 +19,7 @@
       justify-content: center;
       height: 100vh;
     }
-
+    
     .container {
       text-align: center;
       background-color: white;
@@ -42,7 +42,7 @@
       color: #333;
       font-weight: 600;
     }
-
+    
     p {
       color: #666;
       margin-bottom: 30px;
@@ -54,7 +54,7 @@
       justify-content: space-between;
       align-items: center;
     }
-
+    
     .btn {
       padding: 12px 24px;
       background-color: #007bff;
@@ -82,7 +82,7 @@
       font-size: 15px;
     }
     .my-spinner {
-    align-items: center;
+      align-items: center;
     justify-content: center;
     gap: 10px;
     color: var(--light);
@@ -90,7 +90,7 @@
     font-weight: 600;
     display: none;
   }
-
+  
   .spinner {
     width: 12px;
     height: 12px;
@@ -99,17 +99,24 @@
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
   }
-
+  
   @keyframes spin {
   to {
     transform: rotate(360deg);
   }
   } 
-
+  
   .btn-disabled{
     background-color: rgb(250, 121, 121) !important;
     cursor: not-allowed;
     display: flex;
+  }
+  .button-disabled{
+    background-color:rgb(165, 165, 255);
+    cursor: not-allowed;
+  }
+  .button-disabled:hover{
+   background-color: rgb(165, 165, 255);
   }
   </style>
 </head>
@@ -120,7 +127,7 @@
     <h2>Please Verify Your Email</h2>
     <p>We've sent a verification link to <span style="color: #333; font-weight: 900;" id="emailSpan">Your Email Address</span>. Click the link to Verify your account.
 
-      <p id="hiddenPara">*Please Verify Your Email Before You Continue</p>
+      <p id="hiddenPara"></p>
     </p>
     <div class="btn-con">
       <button class="btn" id="resendBtn" style="background-color: red;">
@@ -133,6 +140,11 @@
     </div>
   </div>
 
+  <script>
+        window.env = {
+            API_KEY: 'AIzaSyC0qjjQ162Nt4kpCOewsXu_CdMRAaHHQhs'
+        };
+  </script>
   <script type="module">
     lottie.loadAnimation({
       container: document.getElementById('inbox-animation'),
@@ -142,49 +154,67 @@
       path: 'inbox-animation.json' // Make sure the JSON file is in the same folder
     });
     // Import the functions you need from the SDKs you need
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth,onAuthStateChanged,sendEmailVerification } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { 
+      getAuth,
+      onAuthStateChanged,
+      sendEmailVerification
+    } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
   
     // Your web app's Firebase configuration
     const firebaseConfig = {
-      apiKey: "AIzaSyDmJfMB1KoMmwFSyCLGpJX2mu9HP0SyxnE",
-      authDomain: "eloquence-edge.firebaseapp.com",
-      projectId: "eloquence-edge",
-      storageBucket: "eloquence-edge.firebasestorage.app",
-      messagingSenderId: "1036349057868",
-      appId: "1:1036349057868:web:c297182b201ffc0d90fde9"
+      apiKey: window.env.API_KEY,
+      authDomain: "eloquence-edge-705e3.firebaseapp.com",
+      projectId: "eloquence-edge-705e3",
+      storageBucket: "eloquence-edge-705e3.firebasestorage.app",
+      messagingSenderId: "1018115553583",
+      appId: "1:1018115553583:web:677adf9dd6b5ee56cfc9da"
     };
-  
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     // Initialize Authentication
     const auth = getAuth()
     //Get Current User
     let currentUser;
-    console.log(auth);
-    console.log(auth.currentUser);
-    
-    document.getElementById("continueBtn").addEventListener("click", onAuthStateChanged(auth,async (user)=>{
-      if (user) {
-        currentUser = user;        
-        document.getElementById("emailSpan").textContent=`${user.email}`
-        console.log("User Is Logged In");
-        console.log(user.emailVerified);
-        if (user.emailVerified) {
+    const reloadUserData = async ()=>{
+      try {
+        document.getElementById("continueBtn").disabled = true;
+        document.getElementById("continueBtn").classList.add ("button-disabled")
+        document.getElementById("continueBtn").innerHTML = "Please wait...";
+        await auth.currentUser.reload()
+        if (currentUser.emailVerified) {
           document.getElementById("hiddenPara").textContent="*Email Verified";
           document.getElementById("hiddenPara").style.color="green";
           setTimeout(() => {
-            location.replace("../user/dashboard.html");
-          }, 3000);
+            location.replace(`../user/dashboard.html?id=${currentUser.uid}`);
+          }, 2000);
         } else{
           document.getElementById("hiddenPara").textContent="*Please Verify Your Email Before You Continue";
         }
+      } catch (error) {
+        console.log(error)
+      } finally {
+        document.getElementById("continueBtn").disabled = false;
+        document.getElementById("continueBtn").innerHTML = "Continue";
+        document.getElementById("continueBtn").classList.remove ("button-disabled");
+
+      }
+    }
+     onAuthStateChanged(auth,async (user)=>{
+      if (user) {
+        currentUser = user;      
+        document.getElementById("emailSpan").textContent=`${user.email}`
+        console.log("User Is Logged In");
+        console.log(user.emailVerified);
       } else{
         console.log("User Is Not Logged In");
       }
-    }));
+    });
+    document.getElementById("continueBtn").addEventListener("click", ()=>{
+      reloadUserData()
+    });
     document.getElementById("resendBtn").addEventListener("click", async (e) => {
       e.preventDefault()
       try {

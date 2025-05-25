@@ -1,8 +1,11 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     background-color: var(--light);
     font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
     color: var(--text);
 }
 :root {
@@ -91,7 +94,10 @@ button .fas{
     margin-right: 5px;
     font-size: 1rem;
 }
-@media screen and (max-width: 600px){
+.img1{
+    display: none;
+}
+@media screen and (max-width: 550px){
     section{
         display: block;
         padding: .9rem 0;
@@ -117,7 +123,13 @@ button .fas{
     }
     section .container .img{
         height: 75%;
-        width: 100%;
+        width: auto;
+        .img1{
+            display: flex;
+        }
+        .img2{
+            display: none;
+        }
     }
     section .content .action-buttons{
         flex-direction: column;
@@ -132,19 +144,5 @@ button .fas{
         margin: 0 auto;
         font-size: 20px;
         font-weight: var(--text-weight-xl);
-    }
-}
-@media screen and (min-width: 500px) and (max-width: 800px){
-    /* body{
-        background-color: rgb(34, 26, 26);
-    } */
-    section{
-        display: block;
-        transform: translateY(2rem);
-        padding: .9em;
-        width: 90%;
-    }
-    .content h1{
-        font-size: 2rem;
     }
 }

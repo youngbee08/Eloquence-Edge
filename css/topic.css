@@ -34,16 +34,46 @@ body {
     --bg-col-deep:#001F4F;
     --hov-text-bg-col:#04031A;
 }
-#root{
+#topic{
+    height: 0% !important;
+    overflow: hidden;
+}
+.tap{
+    position: fixed;
+    bottom: 0;
+    width: 95%;
+    height: 10%;
+    p{
+        text-align: center;
+    }
+    button{
+        padding: var(--p--75) var(--p-2);
+        width:100%;
+        border: none;
+        background-color: var(--hov-text-bg-col);
+        border-radius: 8px;
+        color: var(--light);
+        font-weight: var(--text-weight);
+        display: none;
+        position: absolute;
+        bottom: var(--p--5);
+    }
+}
+#container{
     padding: var(--p--75);
     position: relative;
 }
-#root #main{
+#container #mainPoint{
     display: flex;
     flex-direction: column;
     gap: var(--p--75);
+    height: 80vh;
+    overflow-y: scroll;
 }
-#main .topIcons{
+::-webkit-scrollbar{
+    display: none;
+}
+.topIcons{
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -51,7 +81,7 @@ body {
     top: 0;
     z-index: 2000;
 }
-#main .topIcons i{
+.topIcons i{
     font-size: 25px;
     height: 25px;
     width: 25px;
@@ -64,6 +94,6 @@ body {
         display: none;
     }
 }
-#main .topIcons i:hover{
+.topIcons i:hover{
     background-color: var(--bg-col-deep)
 }

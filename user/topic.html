@@ -10,19 +10,24 @@
     <!-- Font-awesome cdn Ends -->
 </head>
 <body>
-    <div id="root">
+    <div id="container">
         <div style="display: none;" id="notFound">
             Can't Find This Topic
         </div>
-        <main style="display: none;" id="main">
-            <div class="topIcons">
-                <i class="fas fa-chevron-left"></i>
+        <div class="topIcons">
+            <i class="fas fa-chevron-left"></i>
+            <div class="subIcons">
+               <i class="fas 
+               fa-volume-up" id="muteIcon"></i>
                 <i class="fas fa-share"></i>
             </div>
-            <div id="topic">
-
-            </div>
+        </div>
+        <main style="display: none;" id="mainPoint">
         </main>
+        <div class="tap">
+            <strong class="tapP"><i><p>Tap to Continue</p></i></strong>
+            <button id="nextBtn">Next</button>
+        </div>
     </div>
     <script type="module" src="../js/topic.js"></script>
 </body>
