@@ -34,8 +34,8 @@ const auth = getAuth(app)
 const db = getFirestore(app)
 // Initialize Provider
 const provider = new GoogleAuthProvider();
-// Users ColRef
-const usersColRef = collection(db, "Users")
+// ColRef
+const usersColRef = collection(db, "Users");
 //Decalaring all my values in a variable
 const formCon = document.getElementById("formCon");
 const userNameInp = document.getElementById("userNameInp");
@@ -89,7 +89,9 @@ async function signUpWithEmailAndPassword(e) {
         };
         const  userDetails= {
             userName:userNameInp.value.trim(),
-            email:signUpDetails.email
+            email:signUpDetails.email,
+            profilePic:'',
+            createdAt:Date.now()
         };
         if (!emailFormat.test(signUpDetails.email)) {
             throw new Error("*Invalid Email Address");

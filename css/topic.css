@@ -47,7 +47,7 @@ body {
         text-align: center;
     }
     button{
-        padding: var(--p--75) var(--p-2);
+        padding: var(--p-1) var(--p-2);
         width:100%;
         border: none;
         background-color: var(--hov-text-bg-col);

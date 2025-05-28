@@ -10,10 +10,13 @@
     <!-- Font-awesome cdn Ends -->
 </head>
 <body>
+    <div id="locked" style="display: none;">
+        This Topic Is Currently Locked
+    </div>
+    <div style="display: none;" id="notFound">
+        Can't Find This Topic
+    </div>
     <div id="container">
-        <div style="display: none;" id="notFound">
-            Can't Find This Topic
-        </div>
         <div class="topIcons">
             <i class="fas fa-chevron-left"></i>
             <div class="subIcons">
@@ -29,6 +32,11 @@
             <button id="nextBtn">Next</button>
         </div>
     </div>
+    <script>
+        window.env = {
+            API_KEY: 'AIzaSyC0qjjQ162Nt4kpCOewsXu_CdMRAaHHQhs'
+        };
+    </script>
     <script type="module" src="../js/topic.js"></script>
 </body>
 </html>

@@ -17,3 +17,15 @@ getStartedBtn.addEventListener("click", goTodashBoard)
 function goTodashBoard() {
   location.href=`./auth/signUp.html`;
 }
+// const scroll = ()=>{
+//   if (window.scrollY > 0) {
+//     document.querySelector(".action-buttons").style.position = 'unset'
+//     document.querySelector(".content").style.height="10vh"
+//     document.querySelector(".content").style.overflowY="scroll"
+//   }else{
+//     document.querySelector(".action-buttons").style.position = 'fixed'
+//     document.querySelector(".content").style.height="50vh"
+//     document.querySelector(".content").style.overflowY="visible"
+//   }
+// }
+//   window.addEventListener("scroll", scroll)

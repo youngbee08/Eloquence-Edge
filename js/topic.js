@@ -1,3 +1,37 @@
+window.addEventListener("online", () => alert("Back Online"));
+window.addEventListener("offline", () => alert("You're offline"));
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+import { 
+  getAuth,
+} from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc
+} from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+//TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+apiKey: window.env.API_KEY,
+authDomain: "eloquence-edge-705e3.firebaseapp.com",
+projectId: "eloquence-edge-705e3",
+storageBucket: "eloquence-edge-705e3.firebasestorage.app",
+messagingSenderId: "1018115553583",
+appId: "1:1018115553583:web:677adf9dd6b5ee56cfc9da"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+// Initialize Auth
+const auth = getAuth(app)
+// Initialize Firestore
+const db = getFirestore(app)
+// ColRef
+const usersColRef = collection(db, "Users");
 import { bonusTopicsAndExplanations, topicsAndExplanations } from "./dashboard.js";
 
 const searchParams = new URLSearchParams(location.search);
@@ -5,21 +39,39 @@ const main = document.getElementById("mainPoint");
 let topicId;
 let index = 0;
 let isMuted = false;
-
+console.log(topicsAndExplanations.length)
+let userId;
+if (searchParams.has("id")) {
+  userId = searchParams.get("id");
+} //else{
+//   location.href = "../auth/signin.html"
+// }
 if (searchParams.has('t')) {
-    topicId = parseInt(searchParams.get('t'));
-    const topicObj = topicsAndExplanations[topicId - 1];
-    main.innerHTML += `
-      <h2>${topicObj.topic}</h2>
-    `;
-    if (!topicsAndExplanations[topicId - 1]) {
+  topicId = parseInt(searchParams.get('t'));
+  if (topicId <= 53) {
+    if (!topicsAndExplanations[topicId -1].locked) {
+      const topicObj = topicsAndExplanations[topicId - 1];
+      main.innerHTML += `
+        <h2>${topicObj.topic}</h2>
+      `;
+      if (!topicsAndExplanations[topicId - 1]) {
         document.getElementById("notFound").style.display = "flex";
-    } else {
+        main.style.display = 'none'
+      } else {
         main.style.display = "flex";
         speak(main.innerText)
+      }
+    }else{
+      document.getElementById("locked").style.display = "flex";
+      document.getElementById("container").style.display = 'none';
     }
-} else {
+  }else{
     document.getElementById("notFound").style.display = "flex";
+    document.getElementById("container").style.display = 'none';
+  }
+} else {
+  document.getElementById("notFound").style.display = "flex";
+  document.getElementById("container").style.display = 'none';
 }
 function displayExplanation(i) {
   const topicObj = topicsAndExplanations[topicId - 1];
@@ -37,10 +89,6 @@ function displayExplanation(i) {
 function speak (text) { 
   if (isMuted) return;
   const utterance = new SpeechSynthesisUtterance(text);
-
-
-  utterance.pitch = 1.4;
-  utterance.rate = 1.3;
 
   speechSynthesis.speak(utterance);
 }
@@ -75,7 +123,22 @@ document.getElementById("muteIcon").addEventListener("click", () => {
   }
   document.getElementById("muteIcon").classList.toggle('fa-volume-mute');
 });
-
-if (main.innerText.endsWith("Common-mistake: Incorrect: 'She go to school.' Correct: 'She goes to school.' (Subject-verb agreement)")) {
-  alert("continue")
+console.log(topicsAndExplanations[topicId - 1])
+async function next() {
+  document.querySelector("#nextBtn").innerHTML = "Please Wait...."
+  try {
+    const userDocRef = doc(usersColRef, userId);
+    const userSubColRef = collection(userDocRef, "progress")
+    const userSubDocRef = doc(userSubColRef, `Topic ${topicId}`)
+    const topicDetails = {
+      isFinished:true,
+      isFinishedAt:Date.now()
+    }
+    await setDoc(userSubDocRef, topicDetails)
+  } catch (error) {
+    console.log(error)
+  } finally{
+    document.querySelector("#nextBtn").innerHTML = "Next"
+  }
 }
+document.querySelector("#nextBtn").addEventListener("click", next)
