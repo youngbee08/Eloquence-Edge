@@ -10,50 +10,63 @@
     <!-- CSS cdn Link -->
     <link rel="stylesheet" href="../css/signup.css">
     <!-- CSS cdn Link ends -->
+    <!-- favicon cdn Link -->
+    <link rel="shortcut icon" href="../assets/logo_without_label.png" type="image/x-icon">
+    <!-- favicon cdn Link ends -->
 </head>
 <body>
+    <!-- Container -->
     <!-- Form Begins -->
-    <form action="" id="formCon">
-        <h2>Create An Account</h2>
-        <div id="userNameInpCon">
-            <label for="userNameInp">User Name</label>
-            <input type="text" id="userNameInp" placeholder="User Name" required>
-        </div>
-        <div id="emailInpCon">
-            <label for="emailInp">Email</label>
-            <input type="email" id="emailInp" placeholder="Email" required>
-        </div>
-        <div id="passwordInpCon">
-            <label for="passwordInp">Password</label>
-            <div class="pass" id="pass"> 
-                <input type="password" id="passwordInp" placeholder="Password" required minlength="6">
-                <div id="eye-con">
-                    <i class="fas fa-eye-slash" id="fa-eye-slash"></i>
+    <div class="container">
+        <form action="" id="formCon">
+            <h2>Sign up</h2>
+            <div id="userNameInpCon">
+                <i class="fas fa-user"></i>
+                <input type="text" id="userNameInp" placeholder="User Name" required class="allInp">
+            </div>
+            <div id="emailInpCon">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="emailInp" placeholder="Your Email" required class="allInp">
+            </div>
+            <div id="passwordInpCon">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="passwordInp" placeholder="Password" required minlength="6" class="allInp">
+                <i class="fas fa-eye-slash" id="togglePassword" style="cursor: pointer;"></i>
+            </div>
+            <div id="confirmPasswordInpCon">
+                <i class="fas fa-lock" style="color: rgb(187, 187, 184);"></i>
+                <input type="password" id="confirmPasswordInp" placeholder="Confirm Password" required minlength="6" class="allInp">
+            </div>
+            <div id="error">
+                <i class="fas fa-x" style="font-size: 10px; font-weight: 900;"></i>
+                <p id="hiddenPara"></p>
+            </div>
+            <div id="formSubmitBtn">
+                <button type="submit" id="createBtn">
+                    <div class="my-spinner" id="loadingSpinner">
+                        <div class="spinner"></div>
+                    </div>
+                    <span id="normalText">Register</span>
+                </button>
+                <div id="googleSignUpBtn">
+                    <p class="conP">Or continue with</p>
+                    <button type="button" id="continueBtn">
+                        <img width="30px" height="30px" src="../assets/g_logo-removebg-preview.png" alt="">
+                        <span style="font-weight: 600;"></span>
+                    </button>
                 </div>
             </div>
-            <p id="hiddenPara"></p>
+            <br>
+            <div id="already">
+                <a href="./signIn.html">I am already a member</a>
+            </div>
+        </form>
+        <!-- Form Ends -->
+        <div class="signupImage">
+            <!-- <img src="../assets/sign_up_image-removebg-preview.png" alt="signupImage"> -->
         </div>
-        <div id="formSubmitBtn">
-            <button type="submit" id="createBtn">
-                <div class="my-spinner" id="loadingSpinner">
-                    <div class="spinner"></div>
-                </div>
-                <span id="normalText">Continue</span>
-            </button>
-        </div>
-        <br>
-        <div id="googleSignUpBtn">
-            <span style="text-align: center;">OR</span>
-            <button type="button" id="continueBtn">
-                <img width="30px" height="30px" src="../assets/g_logo-removebg-preview.png" alt="">
-                <span style="font-weight: 600;">Continue With Google</span>
-            </button>
-        </div>
-        <div id="already">
-            <p>Already Have An Account? <span id="spanSign"><a href="">Sign In</a></span></p>
-        </div>
-    </form>
-    <!-- Form Ends -->
+        <!-- Container -->
+    </div>
     <script>
         window.env = {
             API_KEY: 'AIzaSyC0qjjQ162Nt4kpCOewsXu_CdMRAaHHQhs'

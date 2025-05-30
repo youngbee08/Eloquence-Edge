@@ -41,8 +41,9 @@ const formCon = document.getElementById("formCon");
 const userNameInp = document.getElementById("userNameInp");
 const emailInp = document.getElementById("emailInp");
 const passwordInp = document.getElementById("passwordInp");
+const confirmPasswordInp = document.getElementById("confirmPasswordInp");
 const signupbtn = document.getElementById("createBtn");
-const hiddenParapgragh = document.getElementById("hiddenPara");
+const errorDisplay = document.getElementById("error");
 const notAcceptedPassword = ["+","=","/","?","~","`",")","(","*","^","%","!",",","."];
 const continueBtn = document.getElementById("continueBtn");
 // Declaration ends //
@@ -78,11 +79,11 @@ async function signUpWithGoogle(e) {
     }
 }
 async function signUpWithEmailAndPassword(e) {
+    e.preventDefault();
+    errorDisplay.style.display="none";
+    document.getElementById("loadingSpinner").style.display="flex";
+    document.getElementById("normalText").style.display="none";
     try {
-        e.preventDefault();
-        hiddenParapgragh.display="none";
-        document.getElementById("loadingSpinner").style.display="flex";
-        document.getElementById("normalText").style.display="none";
         const  signUpDetails= {
             email:emailInp.value.trim(),
             password:passwordInp.value.trim()
@@ -94,19 +95,22 @@ async function signUpWithEmailAndPassword(e) {
             createdAt:Date.now()
         };
         if (!emailFormat.test(signUpDetails.email)) {
-            throw new Error("*Invalid Email Address");
+            throw new Error("Invalid Email Address");
+        }
+        if (confirmPasswordInp.value !== passwordInp.value) {
+            throw new Error("Password doesn't match")
         }
         if (!/[A-Z]/.test(signUpDetails.password)) {
-            throw new Error("*Password must contain at least one uppercase letter (A-Z).");
+            throw new Error("Password must contain at least one uppercase letter (A-Z).");
         }
         if (!/[a-z]/.test(signUpDetails.password)) {
-            throw new Error("*Password must contain at least one lowercase letter (a-z).");
+            throw new Error("Password must contain at least one lowercase letter (a-z).");
         }
         if (!/\d/.test(signUpDetails.password)) {
-            throw new Error("*Password must include at least one number (0-9).");
+            throw new Error("Password must include at least one number (0-9).");
         }
         if (!/[@$!%*?&]/.test(signUpDetails.password)) {
-            throw new Error("*Password must have at least one special character (@, $, !, %, *, ?, &).");
+            throw new Error("Password must have at least one special character (@, $, !, %, *, ?, &).");
         }
         const {email,password} = signUpDetails;
         const res = await createUserWithEmailAndPassword(auth, email,password);
@@ -117,48 +121,30 @@ async function signUpWithEmailAndPassword(e) {
         location.replace(`./verifyAccount.html?vid=${res.user.uid}`);
     } catch (error) {
         console.log(error);
-        hiddenParapgragh.style.display="inline";
-        hiddenParapgragh.classList.add("invalid");
+        errorDisplay.style.display="flex";
+        errorDisplay.classList.add("invalid");
         if (error.message === "Firebase: Error (auth/email-already-in-use).") {
-            hiddenParapgragh.textContent = "*Email already in use";
+            errorDisplay.textContent = "Email already in use";
             return
         }
         if (error.message === "Firebase: Error (auth/network-request-failed)."){
-            hiddenParapgragh.textContent ="Error occured, Please Try Again"
+            errorDisplay.textContent ="Error occured, Please Try Again"
             return
         }
-        hiddenParapgragh.textContent = error.message;
+        errorDisplay.textContent = error.message;
     } finally{
         document.getElementById("loadingSpinner").style.display="none";
         document.getElementById("normalText").style.display="inline";
     }
 }
-document.getElementById("pass").addEventListener("mouseover", (event)=>{
-    if (event.target.nodeName === "I") {
-        document.getElementById("pass").classList.toggle("changeInpBg")
-    }
+const togglePassword = document.getElementById("togglePassword");
+const passwordInput = document.getElementById("passwordInp");
+
+togglePassword.addEventListener("click", () => {
+  const isPasswordVisible = passwordInput.type === "text";
+  
+  passwordInput.type = isPasswordVisible ? "password" : "text";
+  
+  togglePassword.classList.toggle("fa-eye");
+  togglePassword.classList.toggle("fa-eye-slash");
 });
-document.getElementById("pass").addEventListener("mouseout", (event)=>{
-    if (event.target.nodeName === "I") {
-        document.getElementById("pass").classList.toggle("changeInpBg")
-    }
-});
-const eyestroke = document.getElementById("fa-eye-slash");
-eyestroke.addEventListener("click", showBack);
-function showBack (){
-    document.getElementById("passwordInp").type="text"
-    document.getElementById("eye-con").innerHTML=""
-    document.getElementById("eye-con").innerHTML=`
-      <i class="fas fa-eye" id="fa-eye-slash"></i>
-    `;
-    document.querySelector(".fa-eye").addEventListener("click", hide)
-    
-};
-function hide(){
-    document.getElementById("passwordInp").type="password"
-    document.getElementById("eye-con").innerHTML=""
-    document.getElementById("eye-con").innerHTML=`
-      <i class="fas fa-eye-slash" id="fa-eye-slash"></i>
-    `;
-    document.querySelector(".fa-eye-slash").addEventListener("click", showBack);    
-};
